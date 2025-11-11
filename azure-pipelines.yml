@@ -1,35 +1,34 @@
 # ==============================================
-# Pfunani Caring Foundation - Azure CI/CD Pipeline
+# Pfunani Caring Foundation - Azure CI/CD Pipeline (FTP Deploy)
 # ==============================================
 
 trigger:
-- main  
-
+- main   # Trigger build when main branch updates
 
 pool:
-  name: 'MyAgentPool'     
+  name: 'MyAgentPool'     #  your self-hosted agent
 
 steps:
-#  1. Checkout code from GitHub
+# 🧩 1. Checkout code from GitHub
 - checkout: self
   displayName: 'Checkout Repository'
 
-#  2. Install Node.js (for build scripts if needed)
+# 🧱 2. Install Node.js (for any JS build tasks)
 - task: NodeTool@0
   inputs:
     versionSpec: '20.x'
   displayName: 'Install Node.js'
 
-#  3. Install dependencies and build
+# ⚙️ 3. Build the website
 - script: |
     echo Installing dependencies...
-    npm install
+    npm install || echo "No package.json found, skipping install."
 
     echo Building project...
-    npm run build || echo "No build script, skipping build..."
+    npm run build || echo "No build script found, skipping build."
   displayName: 'Build Website'
 
-#  4. Archive build files for deployment
+# 📦 4. Archive all files for deployment
 - task: ArchiveFiles@2
   inputs:
     rootFolderOrFile: '$(System.DefaultWorkingDirectory)'
@@ -39,15 +38,16 @@ steps:
     replaceExistingArchive: true
   displayName: 'Archive site files'
 
-#  5. Publish the artifact for deployment
+# 🚀 5. Publish the artifact (optional, keeps a copy)
 - publish: '$(Build.ArtifactStagingDirectory)/pfunani.zip'
   artifact: drop
   displayName: 'Publish Artifact: pfunani.zip'
 
-#  6. Deploy to Azure Web App
+# 🌍 6. Deploy via Publish Profile (FTP)
 - task: AzureWebApp@1
   inputs:
-    azureSubscription: 'Your-Azure-Service-Connection-Name'   
-    appName: 'pfunani-webapp'                                 
+    ConnectionType: 'PublishProfile'
+    PublishProfilePath: '$(System.DefaultWorkingDirectory)/publish-profile/pfunani-webapp.publishsettings'
+    appType: 'webApp'
     package: '$(Build.ArtifactStagingDirectory)/pfunani.zip'
-  displayName: 'Deploy to Azure Web App'
+  displayName: 'Deploy Website via Publish Profile'
