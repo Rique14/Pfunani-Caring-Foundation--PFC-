@@ -3,23 +3,23 @@
 # ==============================================
 
 trigger:
-- main   # Trigger build when main branch updates
+- main
 
 pool:
-  name: 'MyAgentPool'     #  your self-hosted agent
+  name: 'MyAgentPool'
 
 steps:
-# 🧩 1. Checkout code from GitHub
+# 🧩 Checkout code
 - checkout: self
   displayName: 'Checkout Repository'
 
-# 🧱 2. Install Node.js (for any JS build tasks)
+# 🧱 Install Node.js
 - task: NodeTool@0
   inputs:
     versionSpec: '20.x'
   displayName: 'Install Node.js'
 
-# ⚙️ 3. Build the website
+# ⚙️ Build website
 - script: |
     echo Installing dependencies...
     npm install || echo "No package.json found, skipping install."
@@ -28,7 +28,7 @@ steps:
     npm run build || echo "No build script found, skipping build."
   displayName: 'Build Website'
 
-# 📦 4. Archive all files for deployment
+# 📦 Archive website files
 - task: ArchiveFiles@2
   inputs:
     rootFolderOrFile: '$(System.DefaultWorkingDirectory)'
@@ -38,16 +38,16 @@ steps:
     replaceExistingArchive: true
   displayName: 'Archive site files'
 
-# 🚀 5. Publish the artifact (optional, keeps a copy)
-- publish: '$(Build.ArtifactStagingDirectory)/pfunani.zip'
-  artifact: drop
-  displayName: 'Publish Artifact: pfunani.zip'
-
-# 🌍 6. Deploy via Publish Profile (FTP)
-- task: AzureWebApp@1
+# 🚀 FTP Deploy directly (no service connection)
+- task: FtpUpload@2
+  displayName: '🚀 Deploy Website via FTP'
   inputs:
-    ConnectionType: 'PublishProfile'
-    PublishProfilePath: '$(System.DefaultWorkingDirectory)/publish-profile/pfunani-webapp.publishsettings'
-    appType: 'webApp'
-    package: '$(Build.ArtifactStagingDirectory)/pfunani.zip'
-  displayName: 'Deploy Website via Publish Profile'
+    credentialsOption: 'inputs'
+    serverUrl: 'ftps://waws-prod-jnb21-011.ftp.azurewebsites.windows.net/site/wwwroot'   
+    username: 'pfunani-webapp\$pfunani-webapp'                                                  
+    password: 'H8w1DP4YvPbKGE7o4DoaQxp2gmcovSbalrsjaRzZH0RKumbtd8NrefrsGk7s'                                       
+    rootDirectory: '$(System.DefaultWorkingDirectory)'
+    filePatterns: '**'
+    remoteDirectory: '/site/wwwroot'
+    clean: true
+    preservePaths: false
