@@ -1,0 +1,53 @@
+# ==============================================
+# Pfunani Caring Foundation - Azure CI/CD Pipeline
+# ==============================================
+
+trigger:
+- main  
+
+
+pool:
+  name: 'MyAgentPool'     
+
+steps:
+#  1. Checkout code from GitHub
+- checkout: self
+  displayName: 'Checkout Repository'
+
+#  2. Install Node.js (for build scripts if needed)
+- task: NodeTool@0
+  inputs:
+    versionSpec: '20.x'
+  displayName: 'Install Node.js'
+
+#  3. Install dependencies and build
+- script: |
+    echo Installing dependencies...
+    npm install
+
+    echo Building project...
+    npm run build || echo "No build script, skipping build..."
+  displayName: 'Build Website'
+
+#  4. Archive build files for deployment
+- task: ArchiveFiles@2
+  inputs:
+    rootFolderOrFile: '$(System.DefaultWorkingDirectory)'
+    includeRootFolder: false
+    archiveType: 'zip'
+    archiveFile: '$(Build.ArtifactStagingDirectory)/pfunani.zip'
+    replaceExistingArchive: true
+  displayName: 'Archive site files'
+
+#  5. Publish the artifact for deployment
+- publish: '$(Build.ArtifactStagingDirectory)/pfunani.zip'
+  artifact: drop
+  displayName: 'Publish Artifact: pfunani.zip'
+
+#  6. Deploy to Azure Web App
+- task: AzureWebApp@1
+  inputs:
+    azureSubscription: 'Your-Azure-Service-Connection-Name'   
+    appName: 'pfunani-webapp'                                 
+    package: '$(Build.ArtifactStagingDirectory)/pfunani.zip'
+  displayName: 'Deploy to Azure Web App'
