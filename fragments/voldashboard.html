@@ -1,0 +1,75 @@
+<section class="dashboard-section">
+  <div class="dashboard-header">
+    <h1>Welcome Back!</h1>
+    <p>Here's what's happening today.</p>
+  </div>
+  
+  <div class="volunteer-stats">
+    <div class="volunteer-stat-card">
+      <h3>Total Children</h3>
+      <strong id="totalChildren">0</strong>
+      <span id="childrenDelta">this month</span>
+    </div>
+    <div class="volunteer-stat-card">
+      <h3>Active Programs</h3>
+      <strong id="activePrograms">0</strong>
+      <span id="programsStatus">All running</span>
+    </div>
+    <div class="volunteer-stat-card">
+      <h3>My Tasks</h3>
+      <strong id="myTasks">0</strong>
+      <span id="tasksDelta">No tasks</span>
+    </div>
+    <div class="volunteer-stat-card">
+      <h3>Upcoming Events</h3>
+      <strong id="upcomingEvents">0</strong>
+      <span id="eventsDelta">available</span>
+    </div>
+  </div>
+
+  <div class="volunteer-panels">
+    <div class="volunteer-panel recent-activity">
+      <h3>Recent Activity</h3>
+      <ul id="recentActivityList">
+        <li>Loading...</li>
+      </ul>
+      <a href="#" class="view-all">View All</a>
+    </div>
+    
+    <div class="volunteer-panel volunteer-events">
+      <div class="panel-header">
+        <h3>Upcoming Events</h3>
+        <a href="#" class="view-all" onclick="loadPage('events')">View All</a>
+      </div>
+      <div class="events-list" id="volunteerEvents">
+        <div class="event-item loading">
+          <div class="event-date">
+            <span class="month">---</span>
+            <span class="day">--</span>
+          </div>
+          <div class="event-info">
+            <p>Fetching upcoming events</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="volunteer-actions-panel">
+    <h3>Quick Actions</h3>
+    <div class="action-buttons">
+      <button class="btn blue" onclick="loadPage('programs')">
+        <i class="fas fa-book-open"></i>
+        View Programs
+      </button>
+      <button class="btn green" onclick="loadPage('tasks')">
+        <i class="fas fa-tasks"></i>
+        View Tasks
+      </button>
+      <button class="btn purple" onclick="loadPage('events')">
+        <i class="fas fa-calendar-alt"></i>
+        View Events
+      </button>
+    </div>
+  </div>
+</section>

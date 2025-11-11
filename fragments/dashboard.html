@@ -1,0 +1,45 @@
+<section class="dashboard-section">
+  <div class="dashboard-header">
+    <h1>Welcome Back!</h1>
+    <p>Here's what's happening with your programs today.</p>
+  </div>
+
+  <div class="stats">
+    <div class="stat-card">
+      <h3>Total Children</h3>
+      <strong id="totalChildren">0</strong>
+      <span id="childrenDelta">this month</span>
+    </div>
+    <div class="stat-card">
+      <h3>Active Programs</h3>
+      <strong id="activePrograms">0</strong>
+      <span id="programsStatus">All running</span> 
+    </div>
+    <div class="stat-card">
+      <h3>Partners</h3>
+      <strong id="partnersCount">0</strong>
+      <span id="partnersDelta">New this week</span> 
+    </div>
+    <div class="stat-card">
+      <h3>Volunteers</h3>
+      <strong id="volunteerCount">0</strong>
+      <span id="volunteerDelta">New this week</span> 
+    </div>
+  </div>
+
+  <div class="dashboard-panels">
+    <div class="panel recent-activity">
+      <h3>Recent Activity</h3>
+      <ul id="recentActivityList">
+        <li>Loading recent activity...</li>
+      </ul>
+      <a href="#" class="view-all">View All</a>
+    </div>
+    <div class="panel quick-actions">
+      <h3>Quick Actions</h3>
+      <button class="btn blue" onclick="loadPage('add-child')">Add Child</button>
+      <button class="btn green" onclick="loadPage('programs')">View Programs</button>
+      <button class="btn purple" onclick="loadPage('reports')">Generate Report</button>
+    </div>
+  </div>
+</section>

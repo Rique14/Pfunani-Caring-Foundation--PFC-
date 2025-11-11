@@ -1,0 +1,21 @@
+<section class="program-details-section">
+  <div class="program-details-header">
+    <a href="#" onclick="loadPage('programs')" class="back-link">
+      <i class="fas fa-arrow-left"></i> Back to Programs
+    </a>
+    <h2 id="programTitle"></h2>
+    <p>Program Details & Management</p>
+    <button class="enroll-btn orange" onclick="loadPage('enroll-child')">+ Enroll Student</button>
+  </div>
+
+  <div class="tabs">
+    <button class="tab-btn active" onclick="loadTabContent('overview')">Overview</button>
+    <button class="tab-btn" onclick="loadTabContent('schedule')">Schedule</button>
+    <button class="tab-btn" onclick="loadTabContent('students')">Students</button>
+    <button class="tab-btn" onclick="loadTabContent('attendance')">Attendance</button>
+  </div>
+
+  <div id="tabContent">
+    <!-- Tab content will be dynamically loaded here -->
+  </div>
+</section>

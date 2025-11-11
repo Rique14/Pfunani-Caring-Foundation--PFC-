@@ -1,0 +1,23 @@
+<section class="tasks-section">
+  <div class="tasks-header">
+    <div>
+      <h1>Task Management</h1>
+      <p>Assign and manage tasks for volunteers</p>
+    </div>
+    <button class="add-task-btn" onclick="loadPage('add-task')">+ Assign New Task</button>
+  </div>
+
+  <div class="search-filter-container">
+    <input type="text" class="search-bar" placeholder="Search tasks...">
+    <div class="filters">
+      <button class="filter-btn active" data-filter="all">All Tasks</button>
+      <button class="filter-btn" data-filter="pending">Pending</button>
+      <button class="filter-btn" data-filter="in-progress">In Progress</button>
+      <button class="filter-btn" data-filter="completed">Completed</button>
+    </div>
+  </div>
+
+  <div class="tasks-grid" id="tasksGrid">
+    <!-- Tasks will be loaded here -->
+  </div>
+</section>

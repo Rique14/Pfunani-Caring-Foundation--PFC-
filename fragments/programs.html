@@ -1,0 +1,21 @@
+<!-- fragments/programs.html -->
+<section class="programs-section">
+  <header class="programs-header">
+    <h1>Programs</h1>
+    <p>Manage educational programs and training sessions</p>
+    <button class="add-program-btn" onclick="loadPage('add-program')">+ Add Program</button>
+  </header>
+
+  <div class="search-filter-container">
+    <input type="text" class="search-bar" placeholder="Search programs..." />
+    <div class="filters">
+      <button class="filter-btn active">All</button>
+      <button class="filter-btn">Ongoing</button>
+      <button class="filter-btn">Completed</button>
+    </div>
+  </div>
+
+  <div class="programs-grid" id="programsGrid">
+    <!-- Program cards will be dynamically generated -->
+  </div>
+</section>

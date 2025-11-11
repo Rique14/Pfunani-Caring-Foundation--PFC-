@@ -1,0 +1,126 @@
+<section class="add-program-section">
+  <div class="add-program-header">
+    <a href="#" onclick="loadPage('programs')" class="back-link">
+      <i class="fas fa-arrow-left"></i> Back to Programs
+    </a>
+    <h2>Create New Program</h2>
+    <p>Design a new educational program for children</p>
+  </div>
+
+  <form id="addProgramForm" class="add-program-form">
+    <fieldset class="info-group">
+      <legend>Basic Information</legend>
+      <div class="form-row">
+        <div class="form-group">
+          <label for="programName">Program Name *</label>
+          <input type="text" id="programName" name="programName" required />
+        </div>
+        <div class="form-group">
+          <label for="category">Category *</label>
+          <select id="category" name="category" required>
+            <option value="">Select category</option>
+            <option value="Math">Math</option>
+            <option value="Science">Science</option>
+            <option value="Reading">Reading</option>
+          </select>
+        </div>
+      </div>
+      <div class="form-row">
+        <div class="form-group">
+          <label for="programDescription">Program Description *</label>
+          <textarea id="programDescription" name="programDescription" required></textarea>
+        </div>
+      </div>
+      <div class="form-row">
+        <div class="form-group">
+          <label for="targetAgeGroup">Target Age Group</label>
+          <select id="targetAgeGroup" name="targetAgeGroup">
+            <option value="">Select age group</option>
+            <option value="6-8">6-8</option>
+            <option value="9-12">9-12</option>
+          </select>
+        </div>
+        <div class="form-group">
+          <label for="maxCapacity">Maximum Capacity *</label>
+          <input type="number" id="maxCapacity" name="maxCapacity" required />
+        </div>
+        <div class="form-group">
+          <label for="leadInstructor">Lead Instructor</label>
+          <input type="text" id="leadInstructor" name="leadInstructor" />
+        </div>
+      </div>
+    </fieldset>
+
+    <fieldset class="info-group">
+      <legend>Program Schedule</legend>
+      <div class="form-row">
+        <div class="form-group">
+          <label for="scheduleDay">Day</label>
+          <input type="text" id="scheduleDay" name="scheduleDay" />
+        </div>
+        <div class="form-group">
+          <label for="scheduleTime">Time</label>
+          <input type="text" id="scheduleTime" name="scheduleTime" />
+        </div>
+        <div class="form-group">
+          <label for="scheduleActivity">Topic/Activity</label>
+          <input type="text" id="scheduleActivity" name="scheduleActivity" />
+        </div>
+      </div>
+      <button type="button" class="btn blue">+ Add Session</button>
+    </fieldset>
+
+    <fieldset class="info-group">
+      <legend>Program Duration</legend>
+      <div class="form-row">
+        <div class="form-group">
+          <label for="startDate">Start Date *</label>
+          <input type="date" id="startDate" name="startDate" required />
+        </div>
+        <div class="form-group">
+          <label for="endDate">End Date *</label>
+          <input type="date" id="endDate" name="endDate" required />
+        </div>
+      </div>
+      <div class="form-row">
+        <div class="form-group" style="flex:1;">
+          <label for="location">Location</label>
+          <input type="text" id="location" name="location" placeholder="Program location" />
+        </div>
+      </div>
+    </fieldset>
+
+    <fieldset class="info-group">
+      <legend>Program Details</legend>
+      <div class="form-row">
+        <div class="form-group">
+          <label for="learningObjectives">Learning Objectives</label>
+          <input type="text" id="learningObjectives" name="learningObjectives" />
+        </div>
+      </div>
+      <div class="form-row">
+        <div class="form-group">
+          <label for="prerequisites">Prerequisites</label>
+          <input type="text" id="prerequisites" name="prerequisites" />
+        </div>
+      </div>
+      <div class="form-row">
+        <div class="form-group">
+          <label for="requiredMaterials">Required Materials</label>
+          <input type="text" id="requiredMaterials" name="requiredMaterials" />
+        </div>
+      </div>
+      <div class="form-row">
+        <div class="form-group">
+          <label for="additionalNotes">Additional Notes</label>
+          <textarea id="additionalNotes" name="additionalNotes" placeholder="Any special notes..."></textarea>
+        </div>
+      </div>
+    </fieldset>
+
+    <div class="form-actions">
+      <button type="button" class="btn gray" onclick="loadPage('programs')">Cancel</button>
+      <button type="submit" class="btn orange">Create Program</button>
+    </div>
+  </form>
+</section>

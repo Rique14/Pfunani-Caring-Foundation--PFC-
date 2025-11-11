@@ -1,0 +1,54 @@
+<section class="reports-section">
+  <header class="reports-header">
+    <h1>Reports & Analytics</h1>
+  </header>
+
+  <div class="generate-report">
+    <h2> Generate Report</h2>
+    <form id="generateReportForm">
+      <label for="report-type">Report Type</label>
+      <select id="report-type">
+        <option value="">Select report type</option>
+        <option value="attendance">Attendance</option>
+        <option value="enrollment">Enrollment</option>
+        <option value="performance">Performance</option>
+      </select>
+
+      <label for="date-range">Date Range</label>
+      <select id="date-range">
+        <option value="">Select date range</option>
+        <option value="last_week">Last Week</option>
+        <option value="last_month">Last Month</option>
+        <option value="last_year">Last Year</option>
+      </select>
+
+      <button type="submit" class="generate-btn"> Generate Report</button>
+    </form>
+  </div>
+
+  <div id="reportResults" class="report-results" aria-live="polite">
+    <!-- generated report output will be inserted here -->
+  </div>
+
+  <div class="quick-statistics">
+    <h2>Quick Statistics</h2>
+    <div class="stats-grid">
+      <div class="stat-card">
+        <strong id="totalChildren">0</strong>
+        <p>Total Children</p>
+      </div>
+      <div class="stat-card">
+        <strong id="activePrograms">0</strong>
+        <p>Active Programs</p>
+      </div>
+      <div class="stat-card">
+        <strong id="attendanceRate">N/A</strong>
+        <p>Attendance</p>
+      </div>
+      <div class="stat-card">
+        <strong id="volunteerCount">0</strong>
+        <p>Volunteers</p>
+      </div>
+    </div>
+  </div>
+</section>

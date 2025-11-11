@@ -1,0 +1,20 @@
+<section class="children-section">
+  <header class="children-header">
+    <h1>Children & Beneficiaries</h1>
+    <p>Manage and track the progress of all children in our programs</p>
+    <button class="add-child-btn" onclick="loadPage('add-child')">+ Add Child</button>
+  </header>
+
+  <div class="search-filter-container">
+    <input type="text" class="search-bar" placeholder="Search children or guardians..." />
+    <div class="filters">
+      <button class="filter-btn active" data-filter="all">All</button>
+      <button class="filter-btn" data-filter="active">Active</button>
+      <button class="filter-btn" data-filter="inactive">Inactive</button>
+    </div>
+  </div>
+
+  <div class="children-grid" id="childrenGrid">
+    <!-- Firebase-loaded child cards will go here -->
+  </div>
+</section>

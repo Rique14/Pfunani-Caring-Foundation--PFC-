@@ -1,0 +1,80 @@
+<section class="add-child-section">
+  <div class="add-child-header">
+    <a href="#" onclick="loadPage('children')" class="back-link">
+      <i class="fas fa-arrow-left"></i> Back to Children
+    </a>
+    <h2>Add New Child</h2>
+    <p>Register a new child in our programs</p>
+  </div>
+
+  <form id="addChildForm" class="add-child-form">
+    <fieldset class="info-group">
+      <legend>Basic Information</legend>
+      <div class="form-row">
+        <div class="form-group">
+          <label for="childFullName">Full Name *</label>
+          <input type="text" id="childFullName" name="childFullName" required>
+        </div>
+        <div class="form-group">
+          <label for="childAge">Age *</label>
+          <input type="number" id="childAge" name="childAge" required>
+        </div>
+      </div>
+      <div class="form-row">
+        <div class="form-group">
+          <label for="educationLevel">Education Level</label>
+          <input type="text" id="educationLevel" name="educationLevel">
+        </div>
+        <div class="form-group">
+          <label for="homeAddress">Home Address</label>
+          <input type="text" id="homeAddress" name="homeAddress">
+        </div>
+      </div>
+    </fieldset>
+
+    <fieldset class="info-group">
+      <legend>Guardian Information</legend>
+      <div class="form-row">
+        <div class="form-group">
+          <label for="guardianName">Guardian Name *</label>
+          <input type="text" id="guardianName" name="guardianName" required>
+        </div>
+        <div class="form-group">
+          <label for="guardianPhone">Guardian Phone *</label>
+          <input type="tel" id="guardianPhone" name="guardianPhone" required>
+        </div>
+      </div>
+      <div class="form-row">
+        <div class="form-group">
+          <label for="guardianEmail">Guardian Email</label>
+          <input type="email" id="guardianEmail" name="guardianEmail">
+        </div>
+        <div class="form-group">
+          <label for="emergencyContact">Emergency Contact</label>
+          <input type="text" id="emergencyContact" name="emergencyContact">
+        </div>
+      </div>
+      <div class="form-row">
+        <div class="form-group" style="flex:1;">
+          <label for="emergencyPhone">Emergency Phone</label>
+          <input type="tel" id="emergencyPhone" name="emergencyPhone">
+        </div>
+      </div>
+    </fieldset>
+
+    <fieldset class="info-group">
+      <legend>Additional Notes</legend>
+      <div class="form-row">
+        <div class="form-group" style="flex:1;">
+          <label for="additionalNotes">Notes & Special Requirements</label>
+          <textarea id="additionalNotes" name="additionalNotes" placeholder="Any special notes..."></textarea>
+        </div>
+      </div>
+    </fieldset>
+
+    <div class="form-actions">
+      <button type="button" class="btn gray" onclick="loadPage('children')">Cancel</button>
+      <button type="submit" class="btn orange">Add Child</button>
+    </div>
+  </form>
+</section>

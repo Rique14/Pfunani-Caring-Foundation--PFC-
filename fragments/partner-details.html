@@ -1,0 +1,89 @@
+<section class="partner-details-section">
+  <div class="partner-details-header">
+    <a href="#" onclick="loadPage('partners')" class="back-link">
+      <i class="fas fa-arrow-left"></i> Back to Partners
+    </a>
+    <h2 id="partnerDetailsTitle">Partner Details</h2>
+    <p>View and edit partner information</p>
+  </div>
+
+  <form id="partnerDetailsForm" class="partner-details-form">
+    <fieldset class="info-group">
+      <legend>Basic Information</legend>
+      <div class="form-row">
+        <div class="form-group">
+          <label for="editPartnerFullName">Full Name *</label>
+          <input type="text" id="editPartnerFullName" name="editPartnerFullName" required>
+        </div>
+        <div class="form-group">
+          <label for="editPartnerRole">Role *</label>
+          <select id="editPartnerRole" name="editPartnerRole" required>
+            <option value="Volunteer">Volunteer</option>
+            <option value="Partner">Partner</option>
+            <option value="Staff">Staff</option>
+            <option value="Coordinator">Coordinator</option>
+            <option value="Other">Other</option>
+          </select>
+        </div>
+      </div>
+      <div class="form-row">
+        <div class="form-group">
+          <label for="editPartnerEmail">Email *</label>
+          <input type="email" id="editPartnerEmail" name="editPartnerEmail" required>
+        </div>
+        <div class="form-group">
+          <label for="editPartnerPhone">Phone *</label>
+          <input type="tel" id="editPartnerPhone" name="editPartnerPhone" required>
+        </div>
+      </div>
+      <div class="form-row">
+        <div class="form-group">
+          <label for="editPartnerOrganization">Organization</label>
+          <input type="text" id="editPartnerOrganization" name="editPartnerOrganization">
+        </div>
+        <div class="form-group">
+          <label for="editPartnerStatus">Status</label>
+          <select id="editPartnerStatus" name="editPartnerStatus">
+            <option value="active">Active</option>
+            <option value="inactive">Inactive</option>
+            <option value="pending">Pending</option>
+          </select>
+        </div>
+      </div>
+    </fieldset>
+
+    <fieldset class="info-group">
+      <legend>Contact Information</legend>
+      <div class="form-row">
+        <div class="form-group" style="flex:1;">
+          <label for="editPartnerAddress">Address</label>
+          <input type="text" id="editPartnerAddress" name="editPartnerAddress" placeholder="Full address">
+        </div>
+      </div>
+    </fieldset>
+
+    <fieldset class="info-group">
+      <legend>Availability & Notes</legend>
+      <div class="form-row">
+        <div class="form-group" style="flex:1;">
+          <label for="editPartnerAvailability">Availability</label>
+          <input type="text" id="editPartnerAvailability" name="editPartnerAvailability" placeholder="e.g., Monday, Wednesday, Friday">
+        </div>
+      </div>
+      <div class="form-row">
+        <div class="form-group" style="flex:1;">
+          <label for="editPartnerNotes">Additional Notes</label>
+          <textarea id="editPartnerNotes" name="editPartnerNotes" placeholder="Any special skills, notes, or requirements..."></textarea>
+        </div>
+      </div>
+    </fieldset>
+
+    <div class="form-actions">
+      <button type="button" class="btn red" id="deletePartnerBtn">Delete Partner</button>
+      <div>
+        <button type="button" class="btn gray" onclick="loadPage('partners')">Cancel</button>
+        <button type="submit" class="btn orange">Update Partner</button>
+      </div>
+    </div>
+  </form>
+</section>

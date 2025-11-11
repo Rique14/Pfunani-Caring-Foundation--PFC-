@@ -1,0 +1,22 @@
+<section class="enroll-child-section">
+  <a a href="#" onclick="loadPage('programs')" class="back-link"><i class="fas fa-arrow-left"></i> Back</a>
+
+  <h2>Enroll Child in Program</h2>
+
+  <form id="enrollChildForm">
+    <div class="form-group">
+      <label for="programSelect">Select Program:</label>
+      <select id="programSelect" required></select>
+    </div>
+
+    <div class="form-group">
+      <label for="childSelect">Select Child:</label>
+      <select id="childSelect" required disabled></select>
+    </div>
+
+    <button type="submit" class="btn orange">Enroll Child</button>
+  </form>
+
+  <div id="enrollMessage" style="margin-top: 1rem;"></div>
+  <p id="enrollStatus"></p>
+</section>

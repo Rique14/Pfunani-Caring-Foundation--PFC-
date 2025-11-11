@@ -1,0 +1,146 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <title>Admin Dashboard - PFC</title>
+  <link rel="stylesheet" href="css/style.css" />
+  
+<link
+  rel="stylesheet"
+  href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css"/>
+
+ 
+</head>
+<body class="dashboard-page">
+  <div class="sidebar">
+    <img src="images/pfunani new logo.png" alt="Logo" class="sidebar-logo" />
+    <div class="user-info">
+      <div class="avatar" id="userAvatar">JD</div>
+      <div class="username-role">
+        <strong id="adminName">Username</strong>
+        <span class="role-badge">admin</span>
+      </div>
+    </div>
+    <ul class="nav-links">
+      <li><a href="#" onclick="loadPage('dashboard')"><i class="fas fa-th-large"></i> Dashboard</a></li>
+      <li><a href="#" onclick="loadPage('children')"><i class="fas fa-user"></i> Children</a></li>
+      <li><a href="#" onclick="loadPage('programs')"><i class="fas fa-book-open"></i> Programs</a></li>
+      <li><a href="#" onclick="loadPage('partners')"><i class="fas fa-users"></i> Partners</a></li>
+      <li><a href="#" onclick="loadPage('admin-tasks')"><i class="fas fa-tasks"></i> Task Management</a></li>
+      <li><a href="#" onclick="loadPage('reports')"><i class="fas fa-file-alt"></i> Reports</a></li>
+
+      <hr class="divider" />
+
+     
+      <li><a href="#" onclick="logout()" class="logout-link"><i class="fas fa-sign-out-alt"></i> Sign Out</a></li>
+    </ul>
+  </div>
+
+
+  <div class="main-content" id="main-content">
+    <!-- Page fragments load here -->
+  </div>
+
+  <script>
+  const user = JSON.parse(localStorage.getItem("loggedInUser"));
+
+  // Redirect to login page if user is not logged in or not an admin
+  if (!user || user.role !== "admin") {
+    window.location.href = "index.html";
+  } else {
+    // Set the admin name in the sidebar
+    const adminNameElement = document.getElementById("adminName");
+    if (adminNameElement) {
+      adminNameElement.textContent = user.name;
+    }
+
+    // Generate initials for the avatar
+    const initials = user.name
+      .split(" ")
+      .map((word) => word[0].toUpperCase())
+      .join("");
+    const avatarElement = document.getElementById("userAvatar");
+    if (avatarElement) {
+      avatarElement.textContent = initials;
+    }
+
+    // Load the default page (dashboard)
+    loadPage("dashboard");
+  }
+
+  // Logout function to clear user data and redirect to login page
+  function logout() {
+    localStorage.removeItem("loggedInUser");
+    // redirect to landing page
+    window.location.href = "home.html";
+  }
+
+  // Function to load page fragments dynamically
+function loadPage(page) {
+  fetch(`fragments/${page}.html`)
+    .then((res) => res.text())
+    .then((html) => {
+      document.getElementById("main-content").innerHTML = html;
+
+      // Attach specific listeners after page loads
+      if (page === "dashboard" && typeof window.attachDashboardListeners === "function") {
+        window.attachDashboardListeners();
+      }
+
+      if (page === "add-child" && typeof window.attachAddChildListeners === "function") {
+        window.attachAddChildListeners();
+      }
+
+      if (page === "add-member" && typeof window.attachAddMemberListeners === "function") {
+        window.attachAddMemberListeners();
+      }
+
+      if (page === "children" && typeof window.attachChildrenPageListeners === "function") {
+        window.attachChildrenPageListeners();
+      }
+
+      if (page === "add-program" && typeof window.attachAddProgramListeners === "function") {
+        window.attachAddProgramListeners();
+      }
+
+      if (page === "program-details" && typeof window.loadProgramDetails === "function") {
+        window.loadProgramDetails();
+      }
+
+      if (page === "programs" && typeof window.attachProgramsPageListeners === "function") {
+        window.attachProgramsPageListeners();
+      }
+       if (page === "enroll-child" && typeof window.attachEnrollChildListeners === "function") {
+        window.attachEnrollChildListeners();
+      }
+      if (page === "partners" && typeof window.attachPartnersPageListeners === "function") {
+        window.attachPartnersPageListeners();
+      }
+      
+      if (page === "reports" && typeof window.attachReportsPageListeners === "function") {
+        window.attachReportsPageListeners();
+      }
+
+      if (page === "enroll-child" && typeof window.attachEnrollChildListeners === "function") {
+        window.attachEnrollChildListeners();
+      }
+
+      if (page === "admin-tasks" && typeof window.attachAdminTasksListeners === "function") {
+  window.attachAdminTasksListeners();
+}
+
+    if (page === "add-task" && typeof window.attachAddTaskListeners === "function") {
+  window.attachAddTaskListeners();
+    }
+              
+    })
+    .catch((err) => {
+      console.error("Error loading page:", err);
+      document.getElementById("main-content").innerHTML = "<p>Page failed to load.</p>";
+    });
+}
+
+</script>
+<script type="module" src="script/script.js"></script>
+</body>
+</html>

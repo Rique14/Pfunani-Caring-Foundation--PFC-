@@ -1,0 +1,25 @@
+<!-- fragments/partners.html -->
+<section class="partners-section">
+  <header class="partners-header">
+    <div>
+      <h1>Partners & Volunteers</h1>
+      <p>Manage team members and coordinate activities</p>
+    </div>
+    <div>
+      <button class="add-member-btn" onclick="loadPage('add-member')">+ Add Member</button>
+    </div>
+  </header>
+
+  <div class="search-filter-container">
+    <input type="text" class="search-bar" placeholder="Search partners or volunteers..." />
+    <div class="filters">
+      <button class="filter-btn active" data-filter="all">All</button>
+      <button class="filter-btn" data-filter="active">Active</button>
+      <button class="filter-btn" data-filter="inactive">Inactive</button>
+    </div>
+  </div>
+
+  <div class="partners-grid" id="partnersGrid">
+    <!-- Firebase-loaded partner cards will go here -->
+  </div>
+</section>

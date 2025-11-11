@@ -1,0 +1,106 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <title>Partner Dashboard - PFC</title>
+  <link rel="stylesheet" href="css/style.css" />
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" />
+</head>
+<body class="dashboard-page">
+  <div class="sidebar">
+    <img src="images/pfunani new logo.png" alt="Logo" class="sidebar-logo" />
+    <div class="user-info">
+      <div class="avatar" id="userAvatar">JD</div>
+      <div class="username-role">
+        <strong id="partnerName">Username</strong>
+        <span class="role-badge">partner</span>
+      </div>
+    </div>
+    <ul class="nav-links">
+      <li><a href="#" onclick="loadPage('dashboard')"><i class="fas fa-th-large"></i> Dashboard</a></li>
+      <li><a href="#" onclick="loadPage('children')"><i class="fas fa-user"></i> Children</a></li>
+      <li><a href="#" onclick="loadPage('programs')"><i class="fas fa-book-open"></i> Programs</a></li>
+      <li><a href="#" onclick="loadPage('tasks')"><i class="fas fa-tasks"></i> Tasks</a></li>
+      <li><a href="#" onclick="loadPage('reports')"><i class="fas fa-file-alt"></i> Reports</a></li>
+      <hr class="divider" />
+      <li><a href="#" onclick="logout()" class="logout-link"><i class="fas fa-sign-out-alt"></i> Sign Out</a></li>
+    </ul>
+  </div>
+
+  <div class="main-content" id="main-content">
+    <!-- Page fragments load here -->
+  </div>
+
+  <script>
+    const user = JSON.parse(localStorage.getItem("loggedInUser"));
+
+    // Redirect to login page if user is not logged in or not a partner
+    if (!user || user.role !== "partner") {
+      window.location.href = "index.html";
+    } else {
+      // Set the partner name in the sidebar
+      const partnerNameElement = document.getElementById("partnerName");
+      if (partnerNameElement) {
+        partnerNameElement.textContent = user.name;
+      }
+
+      // Generate initials for the avatar
+      const initials = user.name
+        .split(" ")
+        .map((word) => word[0].toUpperCase())
+        .join("");
+      const avatarElement = document.getElementById("userAvatar");
+      if (avatarElement) {
+        avatarElement.textContent = initials;
+      }
+
+      // Load the default page (dashboard)
+      loadPage("partdashboard");
+    }
+
+    // Logout function to clear user data and redirect to login page
+    function logout() {
+      localStorage.removeItem("loggedInUser");
+      // redirect to landing page
+      window.location.href = "home.html";
+    }
+
+    // Function to load page fragments dynamically
+    function loadPage(page) {
+      fetch(`fragments/${page}.html`)
+        .then((res) => res.text())
+        .then((html) => {
+          document.getElementById("main-content").innerHTML = html;
+
+          // Attach specific listeners after page loads
+          if (page === "partdashboard" && typeof window.attachPartnerDashboardListeners === "function") {
+            window.attachPartnerDashboardListeners();
+          }
+
+          if (page === "children" && typeof window.attachChildrenPageListeners === "function") {
+            window.attachChildrenPageListeners();
+          }
+
+          if (page === "programs" && typeof window.attachProgramsPageListeners === "function") {
+            window.attachProgramsPageListeners();
+          }
+
+          if (page === "tasks" && typeof window.attachPartnerTasksPageListeners === "function") {
+            window.attachPartnerTasksPageListeners();
+          }
+
+          if (page === "reports" && typeof window.attachPartnerReportsPageListeners === "function") {
+            window.attachPartnerReportsPageListeners();
+          }
+         
+         
+        })
+        .catch((err) => {
+          console.error("Error loading page:", err);
+          document.getElementById("main-content").innerHTML = "<p>Page failed to load.</p>";
+        });
+    }
+  </script>
+  <script type="module" src="script/script.js"></script>
+</body>
+</html>
