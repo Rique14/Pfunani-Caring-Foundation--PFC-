@@ -80,13 +80,13 @@ window.attachReportsPageListeners = function () {
 
   const { db, collection, getDocs, addDoc, onSnapshot } = window.firebaseServices;
 
-  // Live quick stats via onSnapshot
+  
   const totalChildrenEl = document.getElementById("totalChildren");
   const activeProgramsEl = document.getElementById("activePrograms");
   const attendanceRateEl = document.getElementById("attendanceRate");
   const volunteerCountEl = document.getElementById("volunteerCount");
 
-  // children count
+  
   onSnapshot(collection(db, "children"), (snap) => {
     totalChildrenEl.textContent = snap.size;
   }, (err) => console.error("children snapshot err", err));
